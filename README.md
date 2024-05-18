@@ -35,30 +35,124 @@
   ```
   pour windows
 
-  4. @todo récupération des dossiers admin, server et frontend depuis Git
+  4. Récupérer l'ensemble des submodules nécessaire à l'exécution du projet (server, admin et frontend)
 
-  5. @todo copy des fichiers .local (env, dockerfile, docker-compose) sur l'ensemble des projets via script
+  ```bash
+  git submodule update --init --recursive
+  ```
+
+  5. Copier les fichier nécessaires à la bonne exécution de votre env (il est possible de définir des environnements pour les futur deploiements)
+
+  ```bash
+  bin/copy-specifics.sh
+  ```
 
 ## Générer un certificat SSL auto-signé pour une application locale (les commandes doivent être lancée depuis le dossier root de votre application)
 
-  1. @todo script de generation de clé ssl
+Exécuter la commande (notez qu'il est possible de modifier la configuration en modifiant le script avant de l'exécuter)
+
+  ```bash
+  bin/generate_local_certificates.sh
+  ```
+
+  exemple de configuration : 
+
+  ```bash
+  [ subject ]
+countryName                 = Country Name (2 letter code)
+countryName_default         = CH
+stateOrProvinceName         = State or Province Name (full name)
+stateOrProvinceName_default = Vaud
+localityName                = Locality Name (eg, city)
+localityName_default        = Lausanne
+organizationName            = Organization Name (eg, company)
+organizationName_default    = Portfolio
+commonName                  = Common Name (e.g. server FQDN or YOUR name)
+commonName_default          = *.myapp.local
+commonName_max              = 64
+  ``` 
 
 Vous devriez maintenant avoir deux fichiers: myapp.local.key (clé privée) et myapp.local.crt (certificat auto-signé).
 
 ## Créer les dockers
 
-  1. @todo procédure création docker scripts
+  1. ```bash
+  bin/start_containers.sh
+  ```
 
 ## Création d'un compte admin et importation de données samples
 
-  1. @todo creation admin (script ?)
-  2. @todo importation données de test via scripts
+    1. Créer un nouvel admin :
+
+  ```bash
+  bin/create_admin.sh server
+  ```
+
+  2. Importer les samples data
+
+  ```bash
+  bin/import-data.sh -f sampleData.json
+  ```
+
+  (Ce script peut également servir à importer vos propre données, depuis un fichier json à placer dans server/data)
+
+  ou 
+
+  ```bash
+  bin/restore_database.sh database_backups/sample_db_portfolio_project.gz
+  ```
 
 ## Commandes utiles
 
-  @todo description des scripts de développement local
-  @todo lancement de commande de création d'admin depuis le container server
-  @todo import des données depuis container server
+  1. Faire un backup de la db
+
+  ```bash
+  bin/backup_database.sh
+  ```
+
+  Le backup est crée dans le dossier database_backups et peut être chargé via la commande : 
+
+    ```bash
+  bin/restore_database.sh database_backups/nomdufichier.gz
+  ```
+
+  (Ce script peut également servir à importer vos propre données, depuis un fichier json à placer dans server/data)
+
+  2. Nettoyer la db (supprime toutes les données dans les collections)
+
+  ```bash
+  bin/clean_database.sh
+  ```
+
+  3. Rebuild les containers
+
+  ```bash
+  bin/build_containers.sh
+  ```
+
+  4. Demarrer les containers
+
+  ```bash
+  bin/start_containers.sh
+  ```
+
+  5. Stopper les containers
+
+  ```bash
+  bin/stop_containers.sh
+  ```
+
+  6. Supprimer les containers
+
+  ```bash
+  bin/remove_containers.sh
+  ```
+
+  7. Lister les user admins
+
+  ```bash
+  bin/list_admin.sh
+  ```
 
 ## Problèmes connus
 
