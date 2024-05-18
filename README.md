@@ -198,14 +198,15 @@ Exemple avec Firefox : https://support.mozilla.org/fr/kb/comment-regler-codes-er
 
   and in 
 
-  ``bash
+  ```bash
   C:\Windows\System32\drivers\etc\hosts
   ```
+
   for windows
 
   4. Retrieve all submodules needed to run the project (server, admin and frontend)
 
-  bash
+  ```bash
   git submodule update --init --recursive
   ```
 
@@ -219,14 +220,14 @@ Exemple avec Firefox : https://support.mozilla.org/fr/kb/comment-regler-codes-er
 
 Execute the command (note that it is possible to modify the configuration by editing the script before executing it)
 
-  bash
+  ```bash
   bin/generate_local_certificates.sh
   ```
 
   configuration example : 
 
-  ```bash
-  [ subject ]
+```bash
+[ subject ]
 countryName = Country Name (2 letter code)
 countryName_default = CH
 stateOrProvinceName = State or Province Name (full name)
@@ -238,19 +239,20 @@ organizationName_default = Portfolio
 commonName = Common Name (e.g. server FQDN or YOUR name)
 commonName_default = *.myapp.local
 commonName_max = 64
-  ``` 
+``` 
 
 You should now have two files: myapp.local.key (private key) and myapp.local.crt (self-signed certificate).
 
 ## Create the dockers
 
-  1. bash
+  1.
+  ```bash
   bin/start_containers.sh
   ```
 
 ## Create admin account and import sample data
 
-    1. Create a new admin :
+  1. Create a new admin :
 
   ```bash
   bin/create_admin.sh server
@@ -258,7 +260,7 @@ You should now have two files: myapp.local.key (private key) and myapp.local.crt
 
   2. Import sample data
 
-  bash
+  ```bash
   bin/import-data.sh -f sampleData.json
   ```
 
@@ -266,7 +268,7 @@ You should now have two files: myapp.local.key (private key) and myapp.local.crt
 
   or 
 
-  bash
+  ```bash
   bin/restore_database.sh database_backups/sample_db_portfolio_project.gz
   ```
 
@@ -280,7 +282,7 @@ You should now have two files: myapp.local.key (private key) and myapp.local.crt
 
   The backup is created in the database_backups folder and can be loaded with the command : 
 
-    ```bash
+  ```bash
   bin/restore_database.sh database_backups/filename.gz
   ```
 
