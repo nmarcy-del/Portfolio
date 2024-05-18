@@ -79,7 +79,7 @@ Vous devriez maintenant avoir deux fichiers: myapp.local.key (clé privée) et m
 
 ## Créer les dockers
 
-  1. 
+  1. Run :
   
   ```bash
   bin/start_containers.sh
@@ -87,7 +87,7 @@ Vous devriez maintenant avoir deux fichiers: myapp.local.key (clé privée) et m
 
 ## Création d'un compte admin et importation de données samples
 
-    1. Créer un nouvel admin :
+  1. Créer un nouvel admin :
 
   ```bash
   bin/create_admin.sh server
@@ -161,9 +161,9 @@ Vous devriez maintenant avoir deux fichiers: myapp.local.key (clé privée) et m
 
 ## Problèmes connus
 
-1. Le certificat autosigné est bloqué par le serveur : régler le soucis sur le navigateur utilisé
+  1. Le certificat autosigné est bloqué par le serveur : régler le soucis sur le navigateur utilisé
 
-Exemple avec Firefox : https://support.mozilla.org/fr/kb/comment-regler-codes-erreur-securite-sur-sites-securises#w_certificats-auto-signes
+  Exemple avec Firefox : https://support.mozilla.org/fr/kb/comment-regler-codes-erreur-securite-sur-sites-securises#w_certificats-auto-signes
 
 # EN
 ## Prerequisites before creating local containers
@@ -218,7 +218,7 @@ Exemple avec Firefox : https://support.mozilla.org/fr/kb/comment-regler-codes-er
 
 ## Generate a self-signed SSL certificate for a local application (commands must be run from your application's root folder)
 
-Execute the command (note that it is possible to modify the configuration by editing the script before executing it)
+  Execute the command (note that it is possible to modify the configuration by editing the script before executing it)
 
   ```bash
   bin/generate_local_certificates.sh
@@ -226,26 +226,26 @@ Execute the command (note that it is possible to modify the configuration by edi
 
   configuration example : 
 
-```bash
-[ subject ]
-countryName = Country Name (2 letter code)
-countryName_default = CH
-stateOrProvinceName = State or Province Name (full name)
-stateOrProvinceName_default = Vaud
-localityName = Locality Name (eg, city)
-localityName_default = Lausanne
-organizationName = Organization Name (eg, company)
-organizationName_default = Portfolio
-commonName = Common Name (e.g. server FQDN or YOUR name)
-commonName_default = *.myapp.local
-commonName_max = 64
-``` 
+  ```bash
+  [ subject ]
+  countryName = Country Name (2 letter code)
+  countryName_default = CH
+  stateOrProvinceName = State or Province Name (full name)
+  stateOrProvinceName_default = Vaud
+  localityName = Locality Name (eg, city)
+  localityName_default = Lausanne
+  organizationName = Organization Name (eg, company)
+  organizationName_default = Portfolio
+  commonName = Common Name (e.g. server FQDN or YOUR name)
+  commonName_default = *.myapp.local
+  commonName_max = 64
+  ``` 
 
-You should now have two files: myapp.local.key (private key) and myapp.local.crt (self-signed certificate).
+  You should now have two files: myapp.local.key (private key) and myapp.local.crt (self-signed certificate).
 
 ## Create the dockers
 
-  1.
+  1. run :
   ```bash
   bin/start_containers.sh
   ```
@@ -290,7 +290,7 @@ You should now have two files: myapp.local.key (private key) and myapp.local.crt
 
   2. Clean up db (deletes all data in collections)
 
-  bash
+  ```bash
   bin/clean_database.sh
   ```
 
@@ -326,6 +326,6 @@ You should now have two files: myapp.local.key (private key) and myapp.local.crt
 
 ## Known problems
 
-1. The self-signed certificate is blocked by the server: fix the problem in the browser used.
+  1. The self-signed certificate is blocked by the server: fix the problem in the browser used.
 
-Firefox example: https://support.mozilla.org/fr/kb/comment-regler-codes-erreur-securite-sur-sites-securises#w_certificats-auto-signes
+  Firefox example: https://support.mozilla.org/fr/kb/comment-regler-codes-erreur-securite-sur-sites-securises#w_certificats-auto-signes
