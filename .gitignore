@@ -1,3 +1,4 @@
 certs/
+.vscode/
 docker-compose.yml
-/.vscode
+nginx.conf

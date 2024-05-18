@@ -5,14 +5,14 @@ if [ -z "$1" ]; then
 Accessible containers:
     - server
     - admin
-    - portfolio-mongodb
-    - portfolio-nginx
+    - mongodb
+    - nginx
     "
     exit 1
 fi
 
 echo "Running an interactive shell in container $1..."
-docker-compose exec $1 sh
+docker exec -ti portfolio-$1 sh
 
 if [ $? -eq 0 ]; then
     echo "Interactive shell terminated successfully."
