@@ -79,7 +79,9 @@ Vous devriez maintenant avoir deux fichiers: myapp.local.key (clé privée) et m
 
 ## Créer les dockers
 
-  1. ```bash
+  1. 
+  
+  ```bash
   bin/start_containers.sh
   ```
 
@@ -115,7 +117,7 @@ Vous devriez maintenant avoir deux fichiers: myapp.local.key (clé privée) et m
 
   Le backup est crée dans le dossier database_backups et peut être chargé via la commande : 
 
-    ```bash
+  ```bash
   bin/restore_database.sh database_backups/nomdufichier.gz
   ```
 
