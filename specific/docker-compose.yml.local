@@ -1,0 +1,57 @@
+version: '3.8'
+
+networks:
+  myapp-network:
+    driver: bridge
+
+services:
+  server:
+    build:
+      context: ./server
+    container_name: portfolio-server
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_module
+      - ./certs:/usr/src/app/certs
+    networks:
+      - myapp-network
+  
+  mongo:
+    image: mongo:latest
+    container_name: portfolio-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - myapp-network
+  
+  admin:
+    build: ./admin
+    container_name: portfolio-admin
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./admin:/app
+      - /app/node_modules
+    networks:
+      - myapp-network
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: portfolio-nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./certs:/etc/nginx/certs
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - myapp-network
+
+volumes:
+  mongo-data:
